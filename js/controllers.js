@@ -56,12 +56,36 @@ angular.module('starter.controllers', [])
 })
 
 .controller('LoginCtrl', function($scope, $auth) {
+    
+    $scope.isAuthenticated = function() {
+  return $auth.isAuthenticated();
+};
 
     $scope.authenticate = function(provider) {
-      $auth.authenticate(provider);
+        
+      $auth.authenticate(provider)
+      .then(function(response){
+      console.log('Signed in')
+      })
+      .catch(function(response){
+          console.log('something went wrong!')
+      });
+      
+        
+      
     };
-    //test
-//    $scope.logout = function(){
-//        $auth.logout();
-//    };
+    
+    //logout
+    $scope.logout = function(){
+        $auth.logout();
+        if ($auth.isAuthenticated()){
+            console.log ('it is not logged out')
+            
+        }
+        if (!$auth.isAuthenticated()){
+            console.log('it is logged out')
+        }
+        
+       
+    };
 });

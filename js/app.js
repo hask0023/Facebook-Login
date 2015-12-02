@@ -79,6 +79,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'satellizer'])
   $urlRouterProvider.otherwise('/app/playlists');
 // facebook authenticator  
   $authProvider.facebook({
-        clientId: '771402229636026'
+      clientId: '771402229636026',
+      responseType: 'token'
     });
 });
